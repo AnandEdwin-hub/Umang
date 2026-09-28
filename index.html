@@ -22,7 +22,11 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 #app{width:100%;max-width:430px;min-height:100vh;background:var(--bg);position:relative;padding:18px 20px 110px;overflow-x:hidden}
 .view{display:none}.view.on{display:block}
 /* splash */
-.home{margin:-18px -20px -110px;height:100vh;height:100dvh;display:flex;flex-direction:column;background:#000;overflow:hidden}
+.home{margin:-18px -20px -110px;height:100vh;height:100dvh;display:flex;flex-direction:column;background:#000;overflow:hidden;position:relative}
+.home .brandmark{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:0;right:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:8px}
+.home .brandmark img{display:block}
+.home .brandmark img:first-child{height:30px;width:30px;border-radius:8px}
+.home .brandmark img:last-child{height:20px;width:auto}
 .home .ph{flex:1 1 0;min-height:140px;background:var(--hero) center 25%/cover;-webkit-mask-image:linear-gradient(#000 68%,transparent);mask-image:linear-gradient(#000 68%,transparent)}
 .home .bd{padding:0 22px calc(18px + env(safe-area-inset-bottom,0px));margin-top:-16px;position:relative}
 .home .tx{font-size:clamp(28px,9vw,38px);line-height:1.05;font-weight:600;letter-spacing:-.02em}
@@ -109,6 +113,7 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 
 <section class="view on" id="v-home">
   <div class="home" style="--hero:url(images/hero.jpg)">
+    <div class="brandmark"><img src="images/logo-icon.png" alt=""><img src="images/logo-wordmark.png" alt="Umang"></div>
     <div class="ph"></div>
     <div class="bd">
       <div class="tx">Get A <b>Craving</b><br>Grab A Vada Pav</div>
