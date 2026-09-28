@@ -202,6 +202,7 @@ const th = m => encodeURI(IMAGE_MAP[m.id]);
 const big = m => encodeURI(IMAGE_MAP[m.id]);
 let cart={};
 try{cart=JSON.parse(localStorage.getItem("umang-cart")||"{}")}catch(e){}
+cart=Object.fromEntries(Object.entries(cart).filter(([id,q])=>MENU.some(m=>m.id===id)&&q>0));
 const save=()=>{try{localStorage.setItem("umang-cart",JSON.stringify(cart))}catch(e){}};
 const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const total=()=>MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.price,0);
