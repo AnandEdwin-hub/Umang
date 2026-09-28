@@ -34,7 +34,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .home h2{font-size:clamp(17px,5vw,20px);font-weight:600;margin-top:14px;line-height:1.2}
 .home p{color:var(--mute);font-size:clamp(13px,3.6vw,14.5px);line-height:1.42;margin-top:6px}
 .next{margin-top:16px;width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--acc);border-radius:99px;padding:7px 7px 7px 26px;font-size:18px;font-weight:600}
-.next span{width:46px;height:46px;border-radius:50%;background:#fff;color:var(--acc);display:grid;place-items:center;font-size:22px}
+.next span{width:46px;height:46px;border-radius:50%;background:#fff;color:var(--acc);display:grid;place-items:center;box-shadow:0 2px 10px #0005;flex-shrink:0}
 #app.h{min-height:0;height:100vh;height:100dvh;overflow:hidden}
 /* menu */
 .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;min-height:44px}
@@ -113,13 +113,13 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 
 <section class="view on" id="v-home">
   <div class="home" style="--hero:url(images/hero.jpg)">
-    <div class="brandmark"><img src="images/logo-icon.png" alt=""><img src="images/logo-wordmark.png" alt="Umang"></div>
+    <div class="brandmark"><img src="images/icon-512.png" alt=""><img src="images/Name.png" alt="Umang"></div>
     <div class="ph"></div>
     <div class="bd">
       <div class="tx">Get A <b>Craving</b><br>Grab A Vada Pav</div>
       <h2>Guilt-tripped by cravings? Not anymore!</h2>
       <p>Say hello to your weekend hero: Umang Snacks! We are bringing you the ultimate street-food favorite with a wholesome, home-cooked twist. Zero guilt, 100% pure ingredients, and packed with irresistible flavor!</p>
-      <button class="next" onclick="show('menu')">Next<span>&rarr;</span></button>
+      <button class="next" onclick="show('menu')">Next<span><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
     </div>
   </div>
 </section>
