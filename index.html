@@ -215,7 +215,7 @@ function show(v){
   if(v==="cart")renderCart();
   window.scrollTo(0,0);
 }
-function pcard(m){return `<button class="card" onclick="openItem('${m.id}')"><div class="c" style="background-image:url(${th(m)})"></div>
+function pcard(m){return `<button class="card" onclick="openItem('${m.id}')"><div class="c" style="background-image:url('${th(m)}')"></div>
 <span class="n">${m.sub}</span><div class="row" style="margin-top:8px"><span class="p">${inr(m.price)}</span><span class="arrow">&rarr;</span></div></button>`}
 function scard(m){return `<button class="card sp ${m.soon?"soon":""}" ${m.soon?"disabled":`onclick="openItem('${m.id}')"`}><div class="s" style="background-image:url(${th(m)})"></div>
 <span class="n">${m.name}</span>${m.soon?`<span class="chip">Coming soon</span>`:`<span class="p">${inr(m.price)}</span>`}</button>`}
