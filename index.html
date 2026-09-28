@@ -189,8 +189,17 @@ const MENU=[
 /* ====================== */
 const $=id=>document.getElementById(id);
 const inr=n=>"\u20B9"+n;
-const th=m=>`images/${m.id}.jpg`;
-const big=m=>`images/${m.id}.jpg`;
+const IMAGE_MAP = {
+  brown: "images/Brown Paav Butter.jpg",
+  plain: "images/Brown Paav Plain.jpg",
+  white: "images/white-butter.jpg",
+  vada: "images/vada.jpg",
+  misal: "images/misal.jpg",
+  cheese: "images/cheese.jpg"
+};
+
+const th = m => IMAGE_MAP[m.id];
+const big = m => IMAGE_MAP[m.id];
 let cart={};
 try{cart=JSON.parse(localStorage.getItem("umang-cart")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("umang-cart",JSON.stringify(cart))}catch(e){}};
