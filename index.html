@@ -190,16 +190,16 @@ const MENU=[
 const $=id=>document.getElementById(id);
 const inr=n=>"\u20B9"+n;
 const IMAGE_MAP = {
-  brown: "images/Brown Paav Butter.jpg",
-  plain: "images/Brown Paav Plain.jpg",
-  white: "images/white-butter.jpg",
-  vada: "images/vada.jpg",
-  misal: "images/misal.jpg",
-  cheese: "images/cheese.jpg"
+  "white-butter": "images/white-butter.jpg",
+  "white-plain":  "images/white-plain.jpg",
+  "brown-butter": "images/Brown Paav Butter.jpg",
+  "brown-plain":  "images/Brown Paav Plain.jpg",
+  "vada":         "images/vada.jpg",
+  "paav":         "images/paav.jpg"
 };
 
-const th = m => IMAGE_MAP[m.id];
-const big = m => IMAGE_MAP[m.id];
+const th = m => encodeURI(IMAGE_MAP[m.id]);
+const big = m => encodeURI(IMAGE_MAP[m.id]);
 let cart={};
 try{cart=JSON.parse(localStorage.getItem("umang-cart")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("umang-cart",JSON.stringify(cart))}catch(e){}};
