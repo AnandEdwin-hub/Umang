@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161514">
+<title>Umang Pantry</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Umang Pantry">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#161514;--card:#232120;--mute:#a59d95;--acc:#e8642a;--tan:#d9995f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:#0e0d0c;color:#fff;font-family:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100%;display:flex;justify-content:center}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--tan);outline-offset:2px}
+#app{width:100%;max-width:430px;min-height:100vh;background:var(--bg);position:relative;padding:18px 20px 110px;overflow-x:hidden}
+.view{display:none}.view.on{display:block}
+/* splash */
+.home{margin:-18px -20px -110px;height:100vh;min-height:620px;position:relative;background:#000;overflow:hidden}
+.home .ph{position:absolute;inset:0 0 auto 0;height:66%;background:var(--hero) center top/cover;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.home .tx{position:absolute;left:22px;bottom:34px;font-size:46px;line-height:1.02;font-weight:600;letter-spacing:-.02em}
+.home .tx b{color:var(--tan);font-weight:600;display:block}
+.go{position:absolute;right:-34px;bottom:-34px;width:150px;height:150px;border-radius:50%;background:var(--acc);font-size:34px;text-align:left;padding:38px 0 0 42px;border:8px solid #000}
+/* menu */
+.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;min-height:44px}
+.brand{font-weight:600;font-size:18px}.brand small{display:block;color:var(--mute);font-weight:400;font-size:13px}
+.bag{background:#fff;color:#111;border-radius:14px;padding:8px 12px;font-size:14px;font-weight:600;text-align:center;line-height:1.15}
+.bag span{display:block;font-size:20px}
+h1{font-size:36px;font-weight:500;letter-spacing:-.01em}
+.tag{color:var(--tan);font-size:16px;margin:2px 0 16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--card);border-radius:26px;padding:14px;text-align:left;display:flex;flex-direction:column;width:100%}
+.card .c{width:100%;aspect-ratio:1;border-radius:50%;background-size:cover;background-position:center;margin-bottom:12px;box-shadow:0 8px 18px #0009}
+.card .n{font-size:16px;min-height:2.6em;line-height:1.3}.card .k{color:var(--tan);font-size:11px;letter-spacing:.06em;margin-top:8px}
+.card .p{font-size:16px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.arrow{width:34px;height:34px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-size:17px}
+.sp{border-radius:22px;padding:0 0 12px;overflow:hidden}
+.sp .s{width:100%;aspect-ratio:1.55;background-size:cover;background-position:center;margin-bottom:10px}
+.sp .n,.sp .p,.sp .chip{margin-left:14px}.sp .p{color:var(--tan);display:block;margin-top:4px}
+.chip{font-size:12px;color:var(--mute);border:1px solid #4a4540;border-radius:99px;padding:2px 9px;display:inline-block;margin-top:6px}
+.soon{opacity:.6}
+nav{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--card);border-radius:99px;padding:8px;display:flex;gap:8px;box-shadow:0 10px 30px #000a;z-index:5}
+nav button{width:56px;height:52px;border-radius:99px;font-size:20px;color:var(--mute)}
+nav button.on{background:#fff;color:#111}
+/* detail: full-bleed */
+#det{position:fixed;inset:0;z-index:9;display:none;justify-content:center;background:#0e0d0c}
+#det.on{display:flex}
+.dp{width:100%;max-width:430px;height:100%;position:relative;background:var(--bg) var(--dimg) center 62%/cover no-repeat;overflow:hidden;padding:calc(20px + env(safe-area-inset-top,0px)) 22px calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+.dp.round{background:var(--bg)}
+.dp::before{content:"";position:absolute;inset:0;background:linear-gradient(#000c 0%,#0000 38%,#0000 60%,#000d 100%);pointer-events:none}
+.dp.round::before{display:none}
+.dp>*{position:relative}
+.dp .bk{width:40px;height:40px;border-radius:50%;background:#fff3;font-size:18px;backdrop-filter:blur(6px)}
+.dp .hd{display:flex;justify-content:space-between;align-items:flex-start}
+.dp .ti{margin-top:18px}
+.dp .ti i{font-style:normal;color:var(--tan);font-size:14px}
+.dp h1{font-size:42px;margin-top:2px}
+.dp h2{font-size:24px;font-weight:500;margin-top:6px}
+.dp .ds{font-size:15px;line-height:1.35;margin-top:4px;max-width:30ch;color:#e8e2dc}
+.dp .cir{width:240px;height:240px;border-radius:50%;background:var(--dimg) center/cover;margin:34px auto 0;box-shadow:0 20px 40px #000a}
+.dp .ft{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end}
+.dp .pr{font-size:52px;font-weight:600;color:var(--tan);line-height:1}
+.dp .pr small{display:block;font-size:22px;color:#fff;font-weight:400;margin-top:4px}
+.addb{background:#fff;color:#111;border-radius:16px;padding:16px 18px;font-weight:500;font-size:17px;line-height:1.15;text-align:center;width:104px}
+/* cart */
+.btn{background:var(--acc);color:#fff;border-radius:99px;padding:15px 22px;font-weight:600;font-size:17px;width:100%;display:block;text-align:center;text-decoration:none}
+.btn.w{background:#fff;color:#111}.btn.g{background:#25a35a}
+.qty{display:flex;align-items:center;gap:12px}
+.qty button{width:34px;height:34px;border-radius:50%;background:#fff;color:#111;font-size:20px;line-height:1}
+.line{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:18px;padding:10px 14px;margin-bottom:10px}
+.line .t{width:54px;height:54px;border-radius:50%;background-size:cover;background-position:center;flex:none}
+.line .i{flex:1}.line .p{color:var(--tan)}
+label{display:block;color:var(--mute);font-size:14px;margin:16px 0 6px}
+input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:14px;padding:14px;color:#fff;font:inherit}
+.tot{display:flex;justify-content:space-between;font-size:22px;margin:20px 0 6px}
+.note{color:var(--mute);font-size:14px;line-height:1.45;margin:8px 0 14px}
+.step{margin-top:22px}.step p.h{color:var(--tan);margin-bottom:8px;font-weight:500}
+.empty{color:var(--mute);margin:30px 0;line-height:1.5}
+.upi{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-radius:14px;padding:12px 14px;margin-top:10px;font-size:15px}
+.upi button{background:#fff;color:#111;border-radius:99px;padding:6px 14px;font-size:14px}
+.big{font-size:44px;line-height:1.05;font-weight:600;letter-spacing:-.02em}.big b{color:var(--tan);font-weight:600}
+.sub{color:var(--mute);margin-top:12px;max-width:30ch;line-height:1.4}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section class="view on" id="v-home">
+  <div class="home" style="--hero:url(images/hero.jpg)">
+    <div class="ph"></div>
+    <div class="tx">Get A<b>Craving</b>Grab A<br>Vada Pav</div>
+    <button class="go" aria-label="See the menu" onclick="show('menu')">&rarr;</button>
+  </div>
+</section>
+
+<section class="view" id="v-menu">
+  <div class="top"><div class="brand">Umang Pantry<small>Home kitchen, Mumbai</small></div><button class="bag" onclick="show('cart')"><span id="cnt">0</span>Items</button></div>
+  <h1>Vada Pav</h1><div class="tag">Pick your paav: whole wheat or white crispy butter</div>
+  <div class="grid" id="live"></div>
+  <h1 style="margin-top:34px">Coming soon</h1><div class="tag" style="font-size:22px;color:#fff">Mumbai Specials</div>
+  <div class="grid" id="spec"></div>
+</section>
+
+<section class="view" id="v-cart">
+  <div class="top"><div class="brand">Your order<small>Pickup from Umang Pantry</small></div><button class="bag" onclick="show('menu')">Menu</button></div>
+  <div id="lines"></div>
+  <div id="form">
+    <label for="nm">Your name</label><input id="nm" autocomplete="name" placeholder="Name">
+    <label for="fl">Tower / flat number</label><input id="fl" placeholder="e.g. B-402">
+    <label for="ph">Your phone (optional)</label><input id="ph" inputmode="tel" autocomplete="tel" placeholder="Phone number">
+    <div class="tot"><span>Total</span><b id="tot"></b></div>
+    <div class="step"><p class="h">Step 1: Pay by UPI</p>
+      <a class="btn w" id="payBtn" href="#">Pay with UPI</a>
+      <div class="upi"><span id="upiId"></span><button onclick="copyUpi()" id="cp">Copy</button></div>
+      <p class="note">Tap to open GPay, PhonePe or Paytm. Or copy the UPI ID and pay from any app.</p></div>
+    <div class="step"><p class="h">Step 2: Send your order</p>
+      <a class="btn g" id="waBtn" href="#" target="_blank" rel="noopener">Send order on WhatsApp</a>
+      <p class="note">This opens WhatsApp with your order ready to send. We'll confirm once payment is seen.</p></div>
+  </div>
+</section>
+
+<section class="view" id="v-done">
+  <div class="big" style="margin-top:80px">Order sent.<br><b>Thank you!</b></div>
+  <p class="sub">We'll confirm on WhatsApp and let you know when it's ready for pickup.</p>
+  <button class="btn" style="margin-top:28px" onclick="show('menu')">Order more</button>
+</section>
+
+<nav id="nav">
+  <button data-v="menu" aria-label="Menu" class="on" onclick="show('menu')">&#9638;</button>
+  <button data-v="cart" aria-label="Your order" onclick="show('cart')">&#128717;</button>
+</nav>
+
+<div id="det"><div class="dp" id="dp"></div></div>
+</div>
+
+<script>
+/* ===== EDIT THESE ===== */
+const CFG={name:"Umang Pantry",upi:"anandedwinn@oksbi",wa:"918861375006"};
+/* Photos: put images/<id>.jpg for each item (brown, white, plain, vada, misal, cheese). Welcome photo: images/hero.jpg */
+const MENU=[
+  {id:"brown",name:"Vada Pav - Crispy Brown Paav with Butter",sub:"Brown Paav + Butter",h1:"Vada Pav",price:28,desc:"Whole wheat paav, crisp and buttered.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"white",name:"Vada Pav - Crispy White Paav with Butter",sub:"White Paav + Butter",h1:"Vada Pav",price:25,desc:"Soft white paav, crisp and buttered.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"plain",name:"Vada Paav (Without Butter)",sub:"Without Butter",h1:"Vada Pav",price:23,desc:"The classic, no butter.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"vada",name:"Only Vada",sub:"Only Vada",h1:"Vada",price:13,desc:"Just the crispy batata vada.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"misal",name:"Misal Pav Bowl",price:0,soon:true,row:"spec"},
+  {id:"cheese",name:"Cheese Vada Pav",price:0,soon:true,row:"spec"}
+];
+/* ====================== */
+const $=id=>document.getElementById(id);
+const inr=n=>"\u20B9"+n;
+const th=m=>`images/${m.id}.jpg`;
+const big=m=>`images/${m.id}.jpg`;
+let cart={};
+try{cart=JSON.parse(localStorage.getItem("umang-cart")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("umang-cart",JSON.stringify(cart))}catch(e){}};
+const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const total=()=>MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.price,0);
+
+function show(v){
+  closeDet();
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));
+  $("nav").style.display=(v==="home"||v==="done")?"none":"flex";
+  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
+  if(v==="cart")renderCart();
+  window.scrollTo(0,0);
+}
+function pcard(m){return `<button class="card" onclick="openItem('${m.id}')"><div class="c" style="background-image:url(${th(m)})"></div>
+<span class="n">${m.sub}</span><div class="row" style="margin-top:8px"><span class="p">${inr(m.price)}</span><span class="arrow">&rarr;</span></div></button>`}
+function scard(m){return `<button class="card sp ${m.soon?"soon":""}" ${m.soon?"disabled":`onclick="openItem('${m.id}')"`}><div class="s" style="background-image:url(${th(m)})"></div>
+<span class="n">${m.name}</span>${m.soon?`<span class="chip">Coming soon</span>`:`<span class="p">${inr(m.price)}</span>`}</button>`}
+function renderMenu(){
+  $("live").innerHTML=MENU.filter(m=>m.row==="live").map(pcard).join("");
+  $("spec").innerHTML=MENU.filter(m=>m.row==="spec").map(scard).join("");
+  $("cnt").textContent=count();
+}
+function openItem(id){
+  const m=MENU.find(x=>x.id===id),isBig=!!m.big,src=isBig?big(m):th(m);
+  const dp=$("dp");dp.className="dp"+(isBig?"":" round");dp.style.setProperty("--dimg",`url(${src})`);
+  dp.innerHTML=`<div class="hd"><button class="bk" aria-label="Back" onclick="closeDet()">&larr;</button><button class="bag" onclick="show('cart')"><span>${count()}</span>Items</button></div>
+  <div class="ti"><i>UMANG PANTRY</i><h1>${m.h1}</h1><h2>${m.name}</h2><p class="ds">${m.desc}</p></div>
+  ${isBig?"":`<div class="cir"></div>`}
+  <div class="ft"><div class="pr">${m.price} INR<small>${m.per}</small></div><button class="addb" onclick="add('${m.id}')">Add to Order</button></div>`;
+  $("det").classList.add("on");
+}
+function closeDet(){$("det").classList.remove("on")}
+function add(id){cart[id]=(cart[id]||0)+1;save();renderMenu();const b=document.querySelector(".addb");if(b){b.textContent="Added \u2713";setTimeout(closeDet,500)}}
+function chg(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderCart();renderMenu()}
+
+function orderText(){
+  const l=MENU.filter(m=>cart[m.id]).map(m=>`${cart[m.id]} x ${m.name} (${inr(m.price*cart[m.id])})`);
+  return `New order - ${CFG.name}\n${l.join("\n")}\nTotal: ${inr(total())}\nName: ${$("nm").value||"-"}\nFlat: ${$("fl").value||"-"}\nPhone: ${$("ph").value||"-"}\nPickup. UPI payment done.`;
+}
+function links(){
+  $("payBtn").href=`upi://pay?pa=${encodeURIComponent(CFG.upi)}&pn=${encodeURIComponent(CFG.name)}&am=${total()}&cu=INR&tn=${encodeURIComponent("Vada pav order")}`;
+  $("waBtn").href=`https://wa.me/${CFG.wa}?text=${encodeURIComponent(orderText())}`;
+}
+function renderCart(){
+  const ids=MENU.filter(m=>cart[m.id]);
+  if(!ids.length){$("lines").innerHTML=`<p class="empty">Your order is empty. Add something from the menu.</p><button class="btn" onclick="show('menu')">See the menu</button>`;$("form").style.display="none";return}
+  $("form").style.display="block";
+  $("lines").innerHTML=ids.map(m=>`<div class="line"><div class="t" style="background-image:url(${th(m)})"></div><div class="i">${m.name}<div class="p">${inr(m.price*cart[m.id])}</div></div>
+  <div class="qty"><button aria-label="Remove one" onclick="chg('${m.id}',-1)">&minus;</button><span>${cart[m.id]}</span><button aria-label="Add one" onclick="chg('${m.id}',1)">+</button></div></div>`).join("");
+  $("tot").textContent=inr(total());$("upiId").textContent=CFG.upi;links();
+}
+function copyUpi(){
+  const d=()=>{$("cp").textContent="Copied";setTimeout(()=>$("cp").textContent="Copy",1500)};
+  try{navigator.clipboard.writeText(CFG.upi).then(d,d)}catch(e){d()}
+}
+["nm","fl","ph"].forEach(i=>$(i).addEventListener("input",links));
+$("waBtn").addEventListener("click",e=>{
+  if(!$("nm").value.trim()||!$("fl").value.trim()){e.preventDefault();alert("Please add your name and flat number first.");return}
+  setTimeout(()=>{cart={};save();renderMenu();show("done")},600);
+});
+renderMenu();show("home");
+</script>
+</body>
+</html>
