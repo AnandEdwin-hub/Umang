@@ -63,7 +63,7 @@ nav button.on{background:#fff;color:#111}
 .dp .ti i{font-style:normal;color:var(--tan);font-size:14px}
 .dp h1{font-size:42px;margin-top:2px}
 .dp h2{font-size:24px;font-weight:500;margin-top:6px}
-.dp .ds{font-size:15px;line-height:1.35;margin-top:4px;max-width:30ch;color:#e8e2dc}
+.dp .ds{font-size:14px;line-height:1.4;margin-top:6px;max-width:34ch;color:#e8e2dc}
 .dp .cir{width:240px;height:240px;border-radius:50%;background:var(--dimg) center/cover;margin:34px auto 0;box-shadow:0 20px 40px #000a}
 .dp .ft{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end}
 .dp .pr{font-size:52px;font-weight:600;color:var(--tan);line-height:1}
@@ -85,6 +85,13 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 .empty{color:var(--mute);margin:30px 0;line-height:1.5}
 .upi{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-radius:14px;padding:12px 14px;margin-top:10px;font-size:15px}
 .upi button{background:#fff;color:#111;border-radius:99px;padding:6px 14px;font-size:14px}
+.intro h1{font-size:28px;line-height:1.15}.intro p{color:var(--mute);line-height:1.45;margin-top:10px;font-size:15px}
+.pick{background:var(--card);border-radius:22px;padding:16px 18px;margin:18px 0 28px;line-height:1.5;font-size:15px}
+.pick b{color:var(--tan);font-weight:500;display:block;margin-bottom:4px;font-size:16px}
+.pick a{color:var(--tan)}
+.why{margin-top:34px}.why h1{font-size:26px;margin-bottom:12px}
+.why div{background:var(--card);border-radius:18px;padding:13px 16px;margin-bottom:10px;font-size:15px;line-height:1.4;color:var(--mute)}
+.why div b{display:block;color:#fff;font-weight:500;font-size:16px;margin-bottom:2px}
 .big{font-size:44px;line-height:1.05;font-weight:600;letter-spacing:-.02em}.big b{color:var(--tan);font-weight:600}
 .sub{color:var(--mute);margin-top:12px;max-width:30ch;line-height:1.4}
 </style>
@@ -101,11 +108,21 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 </section>
 
 <section class="view" id="v-menu">
-  <div class="top"><div class="brand">Umang Pantry<small>Home kitchen, Mumbai</small></div><button class="bag" onclick="show('cart')"><span id="cnt">0</span>Items</button></div>
-  <h1>Vada Pav</h1><div class="tag">Pick your paav: whole wheat or white crispy butter</div>
+  <div class="top"><div class="brand">Umang Pantry<small>Home kitchen, Chembur</small></div><button class="bag" onclick="show('cart')"><span id="cnt">0</span>Items</button></div>
+  <div class="intro"><h1>Guilt-tripped by cravings? Not anymore!</h1><p>Your weekend hero: a street-food favourite with a wholesome, home-cooked twist. Zero guilt, 100% pure ingredients, packed with flavour.</p></div>
+  <div class="pick"><b>Weekend pickup</b>Saturday: evening from 7:00 PM<br>Sunday: morning from 8:00 AM<br>B Wing, 504, Building No. 126, Florencio, Tilak Nagar, Chembur. <a href="https://www.google.com/maps/search/?api=1&query=Florencio+Tilak+Nagar+Chembur" target="_blank" rel="noopener">Open in Maps</a></div>
+  <h1>Vada Pav</h1><div class="tag">Choose whole wheat paav or white crispy butter paav</div>
   <div class="grid" id="live"></div>
   <h1 style="margin-top:34px">Coming soon</h1><div class="tag" style="font-size:22px;color:#fff">Mumbai Specials</div>
   <div class="grid" id="spec"></div>
+  <div class="why"><h1>Why Umang Snacks is different</h1>
+    <div><b>Pure and hygienic</b>Made at home with top-tier hygiene and the best ingredients.</div>
+    <div><b>The good oils</b>Fried only in groundnut oil and sesame oil. No cheap shortcuts.</div>
+    <div><b>A healthier upgrade</b>Made with the finest organic whole wheat, for a snack you can feel good about.</div>
+    <div><b>The full experience</b>Served with our signature trio of homemade chutneys (peanut, fresh green, tamarind) and crunchy groundnut-oil shev.</div>
+  </div>
+  <p class="note" style="margin-top:22px">Want to reserve your batch or have a question?</p>
+  <a class="btn g" id="waHelp" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>
 </section>
 
 <section class="view" id="v-cart">
@@ -115,6 +132,7 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
     <label for="nm">Your name</label><input id="nm" autocomplete="name" placeholder="Name">
     <label for="fl">Tower / flat number</label><input id="fl" placeholder="e.g. B-402">
     <label for="ph">Your phone (optional)</label><input id="ph" inputmode="tel" autocomplete="tel" placeholder="Phone number">
+    <div class="pick" style="margin:22px 0 0"><b>Pickup</b>Saturday from 7:00 PM, Sunday from 8:00 AM.<br>B Wing, 504, Building No. 126, Florencio, Tilak Nagar, Chembur.</div>
     <div class="tot"><span>Total</span><b id="tot"></b></div>
     <div class="step"><p class="h">Step 1: Pay by UPI</p>
       <a class="btn w" id="payBtn" href="#">Pay with UPI</a>
@@ -145,10 +163,10 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 const CFG={name:"Umang Pantry",upi:"anandedwinn@oksbi",wa:"918861375006"};
 /* Photos: put images/<id>.jpg for each item (brown, white, plain, vada, misal, cheese). Welcome photo: images/hero.jpg */
 const MENU=[
-  {id:"brown",name:"Vada Pav - Crispy Brown Paav with Butter",sub:"Brown Paav + Butter",h1:"Vada Pav",price:28,desc:"Whole wheat paav, crisp and buttered.",per:"per piece",big:true,soon:false,row:"live"},
-  {id:"white",name:"Vada Pav - Crispy White Paav with Butter",sub:"White Paav + Butter",h1:"Vada Pav",price:25,desc:"Soft white paav, crisp and buttered.",per:"per piece",big:true,soon:false,row:"live"},
-  {id:"plain",name:"Vada Paav (Without Butter)",sub:"Without Butter",h1:"Vada Pav",price:23,desc:"The classic, no butter.",per:"per piece",big:true,soon:false,row:"live"},
-  {id:"vada",name:"Only Vada",sub:"Only Vada",h1:"Vada",price:13,desc:"Just the crispy batata vada.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"brown",name:"Vada Pav - Crispy Brown Paav with Butter",sub:"Brown Paav + Butter",h1:"Vada Pav",price:28,desc:"Made with organic whole wheat paav, crisp and buttered. Fried in groundnut and sesame oil. Served with our signature trio of homemade chutneys (peanut, fresh green, tamarind) and crunchy groundnut-oil shev.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"white",name:"Vada Pav - Crispy White Paav with Butter",sub:"White Paav + Butter",h1:"Vada Pav",price:25,desc:"White crispy butter paav. Fried in groundnut and sesame oil. Served with our signature trio of homemade chutneys (peanut, fresh green, tamarind) and crunchy groundnut-oil shev.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"plain",name:"Vada Paav (Without Butter)",sub:"Without Butter",h1:"Vada Pav",price:23,desc:"The classic, without butter. Fried in groundnut and sesame oil. Served with our signature trio of homemade chutneys (peanut, fresh green, tamarind) and crunchy groundnut-oil shev.",per:"per piece",big:true,soon:false,row:"live"},
+  {id:"vada",name:"Only Vada",sub:"Only Vada",h1:"Vada",price:13,desc:"Just the crispy vada, fried in groundnut and sesame oil.",per:"per piece",big:true,soon:false,row:"live"},
   {id:"misal",name:"Misal Pav Bowl",price:0,soon:true,row:"spec"},
   {id:"cheese",name:"Cheese Vada Pav",price:0,soon:true,row:"spec"}
 ];
@@ -218,6 +236,7 @@ $("waBtn").addEventListener("click",e=>{
   if(!$("nm").value.trim()||!$("fl").value.trim()){e.preventDefault();alert("Please add your name and flat number first.");return}
   setTimeout(()=>{cart={};save();renderMenu();show("done")},600);
 });
+$("waHelp").href=`https://wa.me/${CFG.wa}?text=${encodeURIComponent("Hi Umang Pantry, I would like to reserve a batch.")}`;
 renderMenu();show("home");
 </script>
 </body>
