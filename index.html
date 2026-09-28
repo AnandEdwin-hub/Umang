@@ -22,11 +22,16 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 #app{width:100%;max-width:430px;min-height:100vh;background:var(--bg);position:relative;padding:18px 20px 110px;overflow-x:hidden}
 .view{display:none}.view.on{display:block}
 /* splash */
-.home{margin:-18px -20px -110px;height:100vh;min-height:620px;position:relative;background:#000;overflow:hidden}
-.home .ph{position:absolute;inset:0 0 auto 0;height:66%;background:var(--hero) center top/cover;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
-.home .tx{position:absolute;left:22px;bottom:34px;font-size:46px;line-height:1.02;font-weight:600;letter-spacing:-.02em}
-.home .tx b{color:var(--tan);font-weight:600;display:block}
-.go{position:absolute;right:-34px;bottom:-34px;width:150px;height:150px;border-radius:50%;background:var(--acc);font-size:34px;text-align:left;padding:38px 0 0 42px;border:8px solid #000}
+.home{margin:-18px -20px -110px;height:100vh;height:100dvh;display:flex;flex-direction:column;background:#000;overflow:hidden}
+.home .ph{flex:1 1 0;min-height:140px;background:var(--hero) center 25%/cover;-webkit-mask-image:linear-gradient(#000 68%,transparent);mask-image:linear-gradient(#000 68%,transparent)}
+.home .bd{padding:0 22px calc(18px + env(safe-area-inset-bottom,0px));margin-top:-16px;position:relative}
+.home .tx{font-size:clamp(28px,9vw,38px);line-height:1.05;font-weight:600;letter-spacing:-.02em}
+.home .tx b{color:var(--tan);font-weight:600}
+.home h2{font-size:clamp(17px,5vw,20px);font-weight:600;margin-top:14px;line-height:1.2}
+.home p{color:var(--mute);font-size:clamp(13px,3.6vw,14.5px);line-height:1.42;margin-top:6px}
+.next{margin-top:16px;width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--acc);border-radius:99px;padding:7px 7px 7px 26px;font-size:18px;font-weight:600}
+.next span{width:46px;height:46px;border-radius:50%;background:#fff;color:var(--acc);display:grid;place-items:center;font-size:22px}
+#app.h{min-height:0;height:100vh;height:100dvh;overflow:hidden}
 /* menu */
 .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;min-height:44px}
 .brand{font-weight:600;font-size:18px}.brand small{display:block;color:var(--mute);font-weight:400;font-size:13px}
@@ -102,14 +107,17 @@ input{width:100%;background:var(--card);border:1px solid #38332f;border-radius:1
 <section class="view on" id="v-home">
   <div class="home" style="--hero:url(images/hero.jpg)">
     <div class="ph"></div>
-    <div class="tx">Get A<b>Craving</b>Grab A<br>Vada Pav</div>
-    <button class="go" aria-label="See the menu" onclick="show('menu')">&rarr;</button>
+    <div class="bd">
+      <div class="tx">Get A <b>Craving</b><br>Grab A Vada Pav</div>
+      <h2>Guilt-tripped by cravings? Not anymore!</h2>
+      <p>Say hello to your weekend hero: Umang Snacks! We are bringing you the ultimate street-food favorite with a wholesome, home-cooked twist. Zero guilt, 100% pure ingredients, and packed with irresistible flavor!</p>
+      <button class="next" onclick="show('menu')">Next<span>&rarr;</span></button>
+    </div>
   </div>
 </section>
 
 <section class="view" id="v-menu">
   <div class="top"><div class="brand">Umang Pantry<small>Home kitchen, Chembur</small></div><button class="bag" onclick="show('cart')"><span id="cnt">0</span>Items</button></div>
-  <div class="intro"><h1>Guilt-tripped by cravings? Not anymore!</h1><p>Your weekend hero: a street-food favourite with a wholesome, home-cooked twist. Zero guilt, 100% pure ingredients, packed with flavour.</p></div>
   <div class="pick"><b>Weekend pickup</b>Saturday: evening from 7:00 PM<br>Sunday: morning from 8:00 AM<br>B Wing, 504, Building No. 126, Florencio, Tilak Nagar, Chembur. <a href="https://www.google.com/maps/search/?api=1&query=Florencio+Tilak+Nagar+Chembur" target="_blank" rel="noopener">Open in Maps</a></div>
   <h1>Vada Pav</h1><div class="tag">Choose whole wheat paav or white crispy butter paav</div>
   <div class="grid" id="live"></div>
@@ -182,6 +190,7 @@ const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const total=()=>MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.price,0);
 
 function show(v){
+  $("app").classList.toggle("h",v==="home");
   closeDet();
   document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));
   $("nav").style.display=(v==="home"||v==="done")?"none":"flex";
